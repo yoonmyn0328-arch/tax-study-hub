@@ -434,5 +434,337 @@ window.STUDY_ITEMS.push(
       a: true,
       why: "맞아. something simple이 맞고, simply는 부사라 올 수 없어."
     }
+  },
+  {
+    id: "eng-23",
+    subject: "영어",
+    topic: "어휘 · 포함과 구성",
+    title: "involve · incorporate · entail · encompass / compose · constitute",
+    date: "2026-10-13",
+    tags: ["involve", "entail", "encompass", "compose", "constitute"],
+    analogy: `**포함** 계열은 '안에 넣는다'는 그림이야. involve는 관련되다, incorporate는 하나로 합치다, entail은 **딸려서 수반하다**, encompass는 넓게 포괄하다.`,
+    principle: `involve 관련시키다·포함하다, incorporate 통합하다·포함시키다, entail (결과로서) 수반하다, encompass 포괄하다, compose 구성하다, constitute 구성하다·~에 해당하다. entail은 '반드시 따라온다'는 함의가 강해 논리 지문에 자주 나온다.`,
+    trap: `- incorporate와 entail을 바꿔 '수반하다'로 읽는다.
+- constitute를 '헌법을 만들다'로만 외운다 → '~에 해당하다' 뜻이 시험 포인트.
+- involve를 '발명하다'로 혼동한다.`,
+    example: `- The job **involves** frequent travel. (수반한다)
+- The plan **entails** higher costs. (비용 증가를 수반)
+- Ten members **constitute** the committee. (~로 구성된다)`,
+    ox: {
+      q: "entail은 '결과적으로 수반하다'라는 뜻으로 쓰인다.",
+      a: true,
+      why: "맞아. entail은 딸려 오는 결과를 말해."
+    }
+  },
+  {
+    id: "eng-24",
+    subject: "영어",
+    topic: "어휘 · 제거와 약화",
+    title: "eliminate · erase · obliterate / decay · degrade / abuse · misuse",
+    date: "2026-10-13",
+    tags: ["eliminate", "obliterate", "decay", "degrade", "abuse"],
+    analogy: `**eliminate**는 없애다, **obliterate**는 흔적도 없이 지우다(강도 최상). **decay**는 스스로 썩는 것, **degrade**는 누가/무언가가 떨어뜨리는 것.`,
+    principle: `eliminate 제거하다, erase 지우다, obliterate 완전히 말살하다, decay 부패·쇠퇴하다(자연 발생), degrade 악화시키다·품위를 떨어뜨리다(외부 요인), abuse 남용·학대하다, misuse 오용하다.`,
+    trap: `- decay와 degrade를 같은 뜻으로 처리한다 → decay는 **자연적** 쇠퇴, degrade는 **작용에 의한** 하락.
+- abuse(권한·약자 대상)와 misuse(도구·물건)를 뒤바꾼다.`,
+    example: `- Plastics **decay** very slowly. (자연 분해)
+- Stress can **degrade** performance. (떨어뜨린다)
+- **abuse** of power (권력 남용) / **misuse** of equipment`,
+    ox: {
+      q: "degrade는 외부 요인에 의해 수준이나 품위가 떨어지는 것을 말한다.",
+      a: true,
+      why: "맞아. decay는 자연적 쇠퇴, degrade는 떨어뜨리는 작용이야."
+    }
+  },
+  {
+    id: "eng-25",
+    subject: "영어",
+    topic: "어휘 · 구별과 정확성",
+    title: "distinct · explicit · apparent · discrete · disparate / accurate · precise",
+    date: "2026-10-13",
+    tags: ["distinct", "discrete", "disparate", "explicit", "precise"],
+    analogy: `**discrete**는 낱개로 **따로따로**, **discrete**와 철자가 비슷한 **discreet**은 '조심성 있는'이야. **disparate**는 애초에 **비교가 안 되는** 것.`,
+    principle: `distinct 뚜렷이 다른, explicit 명시적인, apparent 명백한(때로 '외견상의'), discrete 별개의·분리된, disparate 이질적인·전혀 다른, accurate 정확한, precise 정밀한. discrete/discreet/disparate 세 철자를 구분하는 것이 포인트다.`,
+    trap: `- discrete와 discreet를 혼동한다 → discreet은 '신중한'.
+- distinct와 disparate를 같은 뜻으로 본다 → disparate는 **이질적**.
+- apparent를 항상 '명백한'으로만 읽는다 → 문맥상 '보기에 그럴 듯한'.`,
+    example: `- two **discrete** categories (별개의 범주)
+- **disparate** views (이질적인 견해)
+- **explicit** instructions (명시적 지시)`,
+    ox: {
+      q: "discrete와 discreet는 철자와 뜻이 모두 다르다.",
+      a: true,
+      why: "맞아. discrete는 '별개의', discreet는 '신중한'이야."
+    }
+  },
+  {
+    id: "eng-26",
+    subject: "영어",
+    topic: "어휘 · 양과 관계",
+    title: "scarce · sparse · meager · ample / respective · respectful · respected",
+    date: "2026-10-13",
+    tags: ["scarce", "sparse", "meager", "ample", "respective"],
+    analogy: `**ample**은 넘칠 만큼 충분, **scarce**는 귀함, **sparse**는 듬성듬성, **meager**는 있는데 **빈약함**. respective는 '각각의', respectful은 '존중하는'.`,
+    principle: `scarce 희소한·부족한, sparse (분포가) 드문드문한, meager 빈약한, ample 충분한·풍부한, respective 각각의, respectful 존중하는, respected 존경받는, respectable 존경할 만한·점잖은.`,
+    trap: `- scarce와 sparse를 같은 것으로 본다 → scarce는 **양이 부족**, sparse는 **간격이 넓음**.
+- respective(각각의)와 respectful(존중하는)을 뒤바꾼다. 시험 단골.`,
+    example: `- **scarce** resources (자원 부족)
+- **sparse** vegetation (드문드문한 식생)
+- their **respective** roles (각자의 역할)`,
+    ox: {
+      q: "respective는 '존경하는'이라는 뜻이다.",
+      a: false,
+      why: "틀렸어. respective는 '각각의'야. 존중하는 건 respectful."
+    }
+  },
+  {
+    id: "eng-27",
+    subject: "영어",
+    topic: "어휘 · 평가와 추측",
+    title: "appreciate · acknowledge · cherish · esteem / attribute · ascribe / speculate · surmise",
+    date: "2026-10-13",
+    tags: ["appreciate", "acknowledge", "cherish", "attribute", "speculate"],
+    analogy: `**attribute A to B**는 'A를 B 탓으로 돌린다'. **speculate**은 근거가 약한 **추측**, **surmise**도 추측이지만 '짐작하다'에 가까워.`,
+    principle: `appreciate 가치를 알아보다·감상하다, acknowledge 인정하다, cherish 소중히 여기다, esteem 존중하다, attribute A to B A를 B의 탓·덕으로 돌리다, ascribe (원인·성질을) 돌리다, trait 특성, speculate 추측하다·투기하다, surmise 짐작하다.`,
+    trap: `- attribute의 방향을 뒤집어 'B를 A에 돌린다'로 읽는다.
+- appreciate를 '감사하다'로만 외워 '가치를 인정하다' 문맥을 놓친다.
+- speculate을 '확신하다'로 바꾼다.`,
+    example: `- She **attributes** her success **to** luck. (성공을 운 탓으로)
+- We can only **speculate** about the cause. (추측할 뿐)
+- **cherish** the memories (소중히 여기다)`,
+    ox: {
+      q: "attribute A to B는 'A를 B의 탓으로 돌리다'라는 뜻이다.",
+      a: true,
+      why: "맞아. A가 결과, B가 원인이야."
+    }
+  },
+  {
+    id: "eng-28",
+    subject: "영어",
+    topic: "어휘 · 취약과 이해",
+    title: "vulnerable · susceptible / apprehend · fathom / profound · abstruse",
+    date: "2026-10-13",
+    tags: ["vulnerable", "susceptible", "apprehend", "fathom", "abstruse"],
+    analogy: `**vulnerable**은 맞으면 아픈 상태, **susceptible**은 영향을 **받기 쉬운** 상태야. **fathom**은 깊이를 재듯 '헤아리다', **abstruse**는 헤아리기 어려운 난해함.`,
+    principle: `vulnerable 취약한, susceptible 영향받기 쉬운·~에 걸리기 쉬운, apprehend 이해하다(또는 체포하다), fathom 깊이 이해하다, comprehend 이해하다, profound 심오한, abstruse 난해한, superficial 피상적인.`,
+    trap: `- vulnerable과 susceptible를 완전 동의어로 단정한다 → susceptible는 **to**와 결합해 '취약한 대상'을 강조.
+- apprehend를 '체포하다'로만 읽어 문맥을 놓친다.
+- profound와 abstruse를 같은 말로 본다 → abstruse는 **난해함**에 초점.`,
+    example: `- Children are **susceptible to** infection.
+- Few can **fathom** his reasoning.
+- an **abstruse** theory (난해한 이론)`,
+    ox: {
+      q: "abstruse는 '심오해서 가치 있는'이라는 뜻이다.",
+      a: false,
+      why: "아니야. abstruse는 '난해한'이야. 심오한 건 profound."
+    }
+  },
+  {
+    id: "eng-29",
+    subject: "영어",
+    topic: "어휘 · 대면과 은폐",
+    title: "face · encounter · evade / conceal · disguise / exert · strive / commitment",
+    date: "2026-10-13",
+    tags: ["evade", "conceal", "disguise", "exert", "commitment"],
+    analogy: `**face**는 정면으로 마주함, **evade**는 살짝 빠져나감. **conceal**은 숨기기, **disguise**는 **다른 것처럼 위장**하기야.`,
+    principle: `face 직면하다, encounter 마주치다·조우하다, evade 회피하다, conceal 숨기다, disguise 변장시키다·위장하다, exert (힘·영향력을) 발휘하다, strive 애쓰다, commitment 헌신·약속, pledge 서약·맹세, devotion 헌신.`,
+    trap: `- conceal과 disguise를 같은 것으로 처리한다 → disguise는 **가장(假裝)**.
+- exert를 '소모하다'로 읽는다 → exert influence는 '영향력을 발휘하다'.
+- commitment를 '위원회'로 혼동한다(committee).`,
+    example: `- **exert** pressure on the market (압력을 가하다)
+- **conceal** the truth (진실을 숨기다) / **disguise** himself as a guard (경비로 변장)
+- a firm **commitment** to quality`,
+    ox: {
+      q: "disguise는 '다른 모습으로 위장하다'라는 뜻이다.",
+      a: true,
+      why: "맞아. 숨기는 conceal, 위장하는 disguise야."
+    }
+  },
+  {
+    id: "eng-30",
+    subject: "영어",
+    topic: "어휘 · 인용과 전달",
+    title: "cite · quote · invoke / transmit · forward / reside · context / estimate",
+    date: "2026-10-13",
+    tags: ["cite", "invoke", "transmit", "reside", "estimate"],
+    analogy: `**cite**는 근거로 **가져다 댐**, **quote**는 그대로 **따옴**, **invoke**는 법·원칙을 **불러내 적용**함. 셋 다 '가져온다'지만 무엇을 가져오느냐가 달라.`,
+    principle: `cite (근거로) 인용하다·인용해 언급하다, quote 그대로 인용하다, invoke (법·원칙·권리를) 원용하다, transmit 전달·전송하다, forward 전달하다, reside 거주하다, dwell 살다·(생각에) 골몰하다, context 맥락, setting 배경·환경, estimate 추정하다, gauge 가늠하다, assess 평가하다, appraise 감정·평가하다.`,
+    trap: `- cite와 quote를 같은 것으로 본다 → cite는 요지 인용, quote는 **그대로**.
+- invoke를 'invite'로 혼동한다.
+- assess·appraise·estimate의 대상을 섞는다(가치 평가 vs 수치 추정).`,
+    example: `- **cite** a study (연구를 근거로 들다)
+- **invoke** the right to remain silent (권리를 원용)
+- **assess** the risk / **estimate** the cost`,
+    ox: {
+      q: "invoke는 법이나 원칙을 근거로 원용한다는 뜻으로 쓰인다.",
+      a: true,
+      why: "맞아. 권리·조항을 불러내 적용하는 게 invoke야."
+    }
+  },
+  {
+    id: "eng-31",
+    subject: "영어",
+    topic: "어휘 · 권한과 제도",
+    title: "independent · autonomous · sovereign / entitle · qualify / endorse · federation",
+    date: "2026-10-13",
+    tags: ["autonomous", "sovereign", "entitle", "qualify", "endorse", "coalition"],
+    analogy: `**independent**는 남에게 안 기댐, **autonomous**는 **스스로 규칙을 정함**, **sovereign**은 **최고 권력**을 가짐. 세 단계로 기억해.`,
+    principle: `independent 독립적인, autonomous 자율적인·자치의, sovereign 주권의·최고의, entitle 자격을 주다·제목을 붙이다, qualify 자격을 갖추다·자격을 주다, undertake 착수하다·떠맡다, embark on 착수하다, endorse 지지·보증하다, oppose 반대하다, federation 연방·연맹, alliance 동맹, coalition 연합, shelter·refuge·haven 피난처·안식처, rule out 배제하다, omit 빠뜨리다, exclusively 오로지.`,
+    trap: `- entitle(자격을 **주다**)와 qualify(자격을 **갖추다**)의 방향을 뒤집는다.
+- federation과 alliance·coalition을 같은 것으로 처리한다 → federation은 **연방**.
+- rule out을 '규칙을 정하다'로 오역한다.`,
+    example: `- The law **entitles** workers **to** severance pay. (자격을 준다)
+- She **qualifies for** the scholarship. (자격을 갖춘다)
+- The study was **ruled out** as unreliable. (배제되었다)`,
+    ox: {
+      q: "entitle은 '자격을 갖추다'라는 뜻이다.",
+      a: false,
+      why: "틀렸어. entitle은 '자격을 주다'야. 갖추는 건 qualify."
+    }
+  },
+  {
+    id: "eng-32",
+    subject: "영어",
+    topic: "어휘 · 고난도 단어",
+    title: "ubiquitous · drastic · distress · crude · scheme · assurance · superior",
+    date: "2026-10-13",
+    tags: ["ubiquitous", "drastic", "distress", "crude", "scheme", "assurance"],
+    analogy: `**ubiquitous**는 '어디에나 있음'(스마트폰), **drastic**은 '과감해서 충격적인', **crude**는 '다듬어지지 않은'이야. crude oil이 원유인 이유도 같아.`,
+    principle: `ubiquitous 어디에나 있는·편재하는, drastic 과감한·극단적인, distress 고통·곤경, crude 조잡한·가공하지 않은, scheme 계획·음모·제도, assurance 보증·확신, superior 우월한·상관, inferior 열등한·부하, executive 임원·행정부의, bargain 흥정하다·거래, mediate 중재하다.`,
+    trap: `- scheme을 늘 '음모'로만 읽는다 → 중립적으로 '제도·계획' 뜻도 있음.
+- superior/inferior의 방향을 뒤집는다.
+- assurance를 '보험(insurance)'으로 혼동한다.`,
+    example: `- Smartphones are **ubiquitous**. (어디에나 있다)
+- a **drastic** cut in spending (과감한 삭감)
+- **crude** oil (원유)`,
+    ox: {
+      q: "ubiquitous는 '어디에나 존재하는'이라는 뜻이다.",
+      a: true,
+      why: "맞아. 편재한다는 뜻이야."
+    }
+  },
+  {
+    id: "eng-33",
+    subject: "영어",
+    topic: "문법 · with 분사구문",
+    title: "with + 명사 + 분사 — 능동은 -ing, 수동은 p.p.",
+    date: "2026-10-13",
+    tags: ["with", "분사구문", "부대상황", "opened"],
+    analogy: `**with the door opened**는 문이 **열려 있는 상태로**(문이 열리는 건 내가 한 게 아니라 상태), **with prices rising**은 가격이 **오르는 상태로**. 목적어와 분사의 관계만 보면 돼.`,
+    principle: `with + 목적어 + 분사는 '~한 상태로'라는 부대상황을 나타낸다. 목적어가 분사의 동작을 하는 능동 관계면 현재분사(-ing), 목적어가 동작을 당하는 수동 관계면 과거분사(p.p.)를 쓴다.`,
+    trap: `- 능동/수동을 뒤집어 'with the door opening'으로 만든다.
+- with 뒤에 완전한 절을 넣어 'with the door was opened'로 쓴다.
+- 콤마 뒤 -ing와 같은 기능으로 착각한다.`,
+    example: `- with the window **open**(형용사) / with the window **opened**(수동 분사)
+- with prices **rising** rapidly (가격이 오르는 상태로)
+- He sat with his arms **crossed**.`,
+    ox: {
+      q: "with + 목적어 + 과거분사는 목적어가 동작을 당하는 수동 관계를 나타낸다.",
+      a: true,
+      why: "맞아. 목적어가 당하면 p.p., 하면 -ing야."
+    }
+  },
+  {
+    id: "eng-34",
+    subject: "영어",
+    topic: "문법 · 콤마 + -ing",
+    title: "콤마 뒤 -ing는 문맥 따라 동시·결과·부연 세 가지",
+    date: "2026-10-13",
+    tags: ["분사구문", "결과", "동시", "부연"],
+    analogy: `**-ing 한 덩어리**를 무조건 '~하면서'로 번역하면 틀려. 앞 절이 원인이고 뒤가 **결과**면 '그래서 ~하게 되었다', 덧붙이는 말이면 '그런데 ~이다'로 읽어.`,
+    principle: `콤마 + -ing 분사구문은 문맥에 따라 ① 동시 상황(하면서) ② 결과(그리하여 ~하게 되었다) ③ 부연 설명(즉, ~인데)로 해석한다. 주절 주어와 분사의 논리적 주어가 같은지, 능동인지 수동인지를 먼저 확인한다.`,
+    trap: `- 하나의 뜻으로 고정해 해석한다.
+- 주절 주어와 분사 주어가 다르면 dangling modifier 오류인데 이를 놓친다.
+- 결과 의미를 '이유'로 바꿔 읽는다.`,
+    example: `- She left the room, **slamming** the door. (동시)
+- He raised prices, **losing** customers. (결과 → 고객을 잃게 되었다)
+- The plan, **announced** yesterday, was withdrawn. (부연·수동)`,
+    ox: {
+      q: "콤마 뒤 -ing 분사구문은 문맥에 따라 동시 상황·결과·부연으로 해석한다.",
+      a: true,
+      why: "맞아. 한 가지 뜻으로 고정하면 안 돼."
+    }
+  },
+  {
+    id: "eng-35",
+    subject: "영어",
+    topic: "문법 · 사역과 지각",
+    title: "have/make A V · allow A to V · find A B · appear + 형용사",
+    date: "2026-10-13",
+    tags: ["사역동사", "allow", "find", "appear", "5형식"],
+    analogy: `**have/make**는 목적어 뒤에 **동사원형**을 바로 붙여. **allow**는 to를 끼워야 해. **find**는 목적어 뒤에 **형용사**가 와서 'A가 B임을 알다'.`,
+    principle: `사역동사 have·make·let은 목적격보어로 동사원형을 취하고(수동 의미면 p.p.), allow·ask·tell은 to부정사를 취한다. find는 목적어 뒤에 형용사·명사를 취하며, appear는 주격보어로 형용사를 취한다.`,
+    trap: `- 'allow A V'로 to를 빼먹는다 → **allow A to V**.
+- have + 목적어 + p.p.의 수동 의미를 능동으로 읽는다.
+- appear 뒤에 부사를 넣는다 → **형용사**.`,
+    example: `- They **made** him **apologize**. (원형)
+- They **allowed** him **to leave**. (to부정사)
+- We **found** the room **empty**. (형용사)
+- She **appeared** **calm**.`,
+    ox: {
+      q: "allow는 목적격보어로 동사원형을 취한다.",
+      a: false,
+      why: "아니야. allow는 to부정사를 취해. 원형은 make·have·let이야."
+    }
+  },
+  {
+    id: "eng-36",
+    subject: "영어",
+    topic: "문법 · 연결 표현",
+    title: "lead to · stem from · account for · cater to · rather than · bear resemblance to",
+    date: "2026-10-13",
+    tags: ["lead to", "stem from", "cater to", "rather than", "resemblance"],
+    analogy: `**lead to**는 앞이 원인, **stem from**은 앞이 결과야. 화살표 방향이 정반대라 지문에서 인과를 뒤집으면 답이 틀려.`,
+    principle: `lead to ~을 초래하다(원인→결과), stem from ~에서 비롯되다(결과←원인), account for 차지하다·설명하다, cater to ~의 요구를 충족시키다, rather than ~보다는, bear resemblance to ~와 닮다. 인과 방향을 확인하는 것이 독해의 핵심이다.`,
+    trap: `- lead to와 stem from의 인과 방향을 바꿔 읽는다.
+- cater to를 '음식을 제공하다'로만 해석한다 → '요구에 맞추다'.
+- rather than을 '~뿐만 아니라'로 오역한다.`,
+    example: `- Poor sleep **leads to** poor focus.
+- His fear **stems from** childhood.
+- The firm **caters to** young buyers. (젊은 구매자층을 겨냥한다)`,
+    ox: {
+      q: "stem from은 '~에서 비롯되다'로, 결과가 앞에 오고 원인이 뒤에 온다.",
+      a: true,
+      why: "맞아. lead to와 방향이 반대야."
+    }
+  },
+  {
+    id: "eng-37",
+    subject: "영어",
+    topic: "독해 · 1분 풀이 구조 표기",
+    title: "[ ] 주요 덩어리, ( ) 수식, / 의미 단위 — 짧게 끊어 읽기",
+    date: "2026-10-13",
+    tags: ["직독직해", "구조표기", "끊어읽기", "1분"],
+    analogy: `문장을 **한 덩어리로 길게 묶으면** 머리에 안 들어와. [주요 덩어리]는 대괄호, (수식·부연)은 소괄호, /는 숨 쉬는 자리. **짧게 끊는 게** 핵심이야.`,
+    principle: `독해는 의미 단위로 끊어 읽는 훈련이 기본이다. 주요 성분은 [ ]로, 수식·부연은 ( )로 표시하고 / 로 의미 단위를 나눈다. 예: until it can be retrieved / after the AUV is recovered / at the end of a dive. 전치사구·관계절·분사구는 앞 요소를 수식하므로 붙여 읽는다.`,
+    trap: `- 긴 구문을 통째로 묶어 해석이 밀린다.
+- 수식 대상을 잘못 잡아 전치사구를 엉뚱한 명사에 붙인다.
+- 모르는 단어에서 멈춰 문장 전체를 놓친다 → 구조 먼저, 단어는 뒤에.`,
+    example: `- [The data] (from the dive) / [will remain] (in the capsule) / until it can be retrieved.
+- 1분 풀이: 구조 표시 10초 → 의미 단위 해석 40초 → 선택지 대조 10초`,
+    ox: {
+      q: "독해에서 전치사구와 관계절은 수식 대상과 붙여 하나의 의미 단위로 읽는다.",
+      a: true,
+      why: "맞아. 수식어를 떼어 놓으면 문장이 안 잡혀."
+    }
+  },
+  {
+    id: "eng-38",
+    subject: "영어",
+    topic: "회화 · OPIc 답변 구조",
+    title: "7줄 답변 공식 — 도입·이유·경험·묘사·느낌·마무리 + 필러",
+    date: "2026-10-13",
+    tags: ["OPIc", "회화", "필러", "답변구조"],
+    analogy: `말하다 막히면 **필러**로 시간을 벌어. "Well, let me think for a second..." 이 한 문장이 침묵 3초를 메워 줘.`,
+    principle: `OPIc 답변은 ① 질문 되받기·도입 ② 이유 ③ 구체적 경험·사례 ④ 세부 묘사(장소·사람·감정) ⑤ 느낀 점 ⑥ 마무리 문장으로 약 7줄을 채우는 구조가 안정적이다. 필러(Well, Actually, You know)와 연결어(First, Also, Finally)를 넣어 끊김을 줄인다.`,
+    trap: `- 이유만 말하고 **구체적 경험**을 빼면 등급이 안 올라간다.
+- 한 문장을 길게 늘어뜨리다 문법이 무너진다 → 짧은 문장 여러 개.
+- 필러를 남발해 의미 없는 말로 채운다.`,
+    example: `- Well, that's an interesting question. / I'd like to talk about my last trip. / For example, last summer I went to Busan with my friends. / The beach was crowded but the food was amazing. / It made me feel refreshed. / That's why I keep going back there.`,
+    ox: {
+      q: "OPIc 답변에서는 이유뿐 아니라 구체적인 경험과 세부 묘사를 포함하는 것이 좋다.",
+      a: true,
+      why: "맞아. 구체성이 점수를 만든다."
+    }
   }
 );
