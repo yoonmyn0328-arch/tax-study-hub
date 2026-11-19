@@ -4,6 +4,9 @@
 
   var ITEMS = (window.STUDY_ITEMS || []).slice();
   var SUBJECTS = ["전체", "세법", "회계학", "국어", "영어"];
+  var DONE_VIEW = "복습 완료";
+  var BY_ID = {};
+  ITEMS.forEach(function (i) { BY_ID[i.id] = i; });
   var EXAM_ISO = "2027-03-27T00:00:00+09:00";
   var LS = {
     star: "taxstudy.v1.starred",
@@ -35,7 +38,8 @@
     date: localStorage.getItem(LS.date) || "all",
     q: ""
   };
-  if (SUBJECTS.indexOf(state.subject) < 0) state.subject = "전체";
+  if (SUBJECTS.indexOf(state.subject) < 0 && state.subject !== DONE_VIEW) state.subject = "전체";
+  if (state.subject === DONE_VIEW && state.filter === "weak") state.filter = "all";
 
   /* ---------- helpers ---------- */
   function $(sel, root) { return (root || document).querySelector(sel); }
@@ -129,34 +133,70 @@
     var total = ITEMS.length;
     var done = ITEMS.filter(function (i) { return mastered.has(i.id); }).length;
     var star = ITEMS.filter(function (i) { return starred.has(i.id); }).length;
+    var remaining = total - done;
     $("#statTotal").textContent = total;
     $("#statDone").textContent = done;
     $("#statStar").textContent = star;
-    $("#statWeak").textContent = total - done;
+    $("#statWeak").textContent = remaining;
     $("#progressBar").style.width = total ? Math.round((done / total) * 100) + "%" : "0%";
-    // tab counts
+    // tab counts: 과목 탭은 '아직 남은(미완료) 카드', 복습 완료 탭은 완료 카드
     $$(".tab", $("#tabs")).forEach(function (t) {
       var sub = t.getAttribute("data-subject");
-      var n = sub === "전체" ? total : ITEMS.filter(function (i) { return i.subject === sub; }).length;
       var badge = $(".n", t);
+      var n;
+      if (sub === DONE_VIEW) {
+        n = done;
+        t.title = "복습 완료 " + n + "장 모아 보기";
+      } else if (sub === "전체") {
+        n = remaining;
+        t.title = "미완료 " + n + "장";
+      } else {
+        n = ITEMS.filter(function (i) { return i.subject === sub && !mastered.has(i.id); }).length;
+        t.title = "미완료 " + n + "장";
+      }
       if (badge) badge.textContent = n;
     });
   }
 
   /* ---------- tabs ---------- */
+  function syncTabActive() {
+    $$(".tab", $("#tabs")).forEach(function (t) {
+      t.classList.toggle("is-active", t.getAttribute("data-subject") === state.subject);
+    });
+  }
+  function syncChipActive() {
+    $$(".chip", $("#chips")).forEach(function (c) {
+      c.classList.toggle("is-active", c.getAttribute("data-filter") === state.filter);
+    });
+  }
+  function setSubject(sub) {
+    state.subject = sub;
+    if (sub === DONE_VIEW && state.filter === "weak") state.filter = "all";
+    try {
+      localStorage.setItem(LS.subject, state.subject);
+      localStorage.setItem(LS.filter, state.filter);
+    } catch (e) {}
+    syncTabActive();
+    syncChipActive();
+    render();
+    updateStats();
+  }
   function renderTabs() {
     var wrap = $("#tabs");
-    wrap.innerHTML = SUBJECTS.map(function (s) {
-      return '<button type="button" class="tab' + (state.subject === s ? " is-active" : "") +
-        '" data-subject="' + s + '"><span>' + s + '</span><span class="n">0</span></button>';
-    }).join("");
+    var parts = [];
+    SUBJECTS.forEach(function (s, idx) {
+      parts.push('<button type="button" class="tab' + (state.subject === s ? " is-active" : "") +
+        '" data-subject="' + esc(s) + '"><span>' + esc(s) + '</span><span class="n">0</span></button>');
+      if (idx === 0) {
+        parts.push('<button type="button" class="tab tab-done' + (state.subject === DONE_VIEW ? " is-active" : "") +
+          '" data-subject="' + DONE_VIEW + '"><span>✓ 복습 완료</span><span class="n">0</span></button>');
+      }
+    });
+    wrap.innerHTML = parts.join("");
     wrap.addEventListener("click", function (e) {
       var btn = e.target.closest(".tab");
       if (!btn) return;
-      state.subject = btn.getAttribute("data-subject");
-      try { localStorage.setItem(LS.subject, state.subject); } catch (err) {}
-      $$(".tab", wrap).forEach(function (t) { t.classList.toggle("is-active", t === btn); });
-      render();
+      setSubject(btn.getAttribute("data-subject"));
     });
   }
 
@@ -185,15 +225,13 @@
   /* ---------- chips ---------- */
   function initChips() {
     var wrap = $("#chips");
-    $$(".chip", wrap).forEach(function (c) {
-      c.classList.toggle("is-active", c.getAttribute("data-filter") === state.filter);
-    });
+    syncChipActive();
     wrap.addEventListener("click", function (e) {
       var chip = e.target.closest(".chip");
       if (!chip) return;
       state.filter = chip.getAttribute("data-filter");
       try { localStorage.setItem(LS.filter, state.filter); } catch (err) {}
-      $$(".chip", wrap).forEach(function (c) { c.classList.toggle("is-active", c === chip); });
+      syncChipActive();
       render();
     });
   }
@@ -224,6 +262,7 @@
       .join(" ").toLowerCase();
   }
   function applyFilters() {
+    var doneView = state.subject === DONE_VIEW;
     var cutoff = null;
     if (state.date === "recent7") {
       var now = new Date();
@@ -231,7 +270,13 @@
       cutoff = new Date(cutoff.getFullYear(), cutoff.getMonth(), cutoff.getDate());
     }
     return ITEMS.filter(function (i) {
-      if (state.subject !== "전체" && i.subject !== state.subject) return false;
+      if (doneView) {
+        if (!mastered.has(i.id)) return false;
+      } else {
+        // 복습 완료한 카드는 과목·전체 목록에서 빼고 '복습 완료' 탭에만 모은다
+        if (mastered.has(i.id)) return false;
+        if (state.subject !== "전체" && i.subject !== state.subject) return false;
+      }
       if (state.filter === "star" && !starred.has(i.id)) return false;
       if (state.filter === "weak" && mastered.has(i.id)) return false;
       if (state.date !== "all" && state.date !== "recent7") {
@@ -246,11 +291,24 @@
     });
   }
 
+  /* ---------- 복습 완료 모아보기 정렬 ---------- */
+  var SUBJECT_ORDER = { "세법": 0, "회계학": 1, "국어": 2, "영어": 3 };
+  function sortDoneView(a, b) {
+    var sa = SUBJECT_ORDER[a.subject] == null ? 9 : SUBJECT_ORDER[a.subject];
+    var sb = SUBJECT_ORDER[b.subject] == null ? 9 : SUBJECT_ORDER[b.subject];
+    if (sa !== sb) return sa - sb;
+    if (a.date !== b.date) return String(b.date).localeCompare(String(a.date));
+    return String(a.id).localeCompare(String(b.id));
+  }
+
   /* ---------- card render ---------- */
   function cardHTML(i) {
+    var doneView = state.subject === DONE_VIEW;
     var cls = "card";
     if (mastered.has(i.id)) cls += " is-done";
     if (starred.has(i.id)) cls += " is-star";
+    if (doneView) cls += " in-done-view";
+    var doneLabel = doneView ? "복습 완료 해제 (원래 과목으로)" : "복습 완료";
     var tags = (i.tags || []).map(function (t) { return '<span class="tag">#' + esc(t) + "</span>"; }).join("");
     return '<article class="' + cls + '" data-id="' + esc(i.id) + '">' +
       '<div class="card-head" role="button" tabindex="0" aria-expanded="false">' +
@@ -264,7 +322,7 @@
           '<button type="button" class="mini-btn star-btn' + (starred.has(i.id) ? " on-star" : "") +
             '" data-act="star" aria-label="별표" title="별표">★</button>' +
           '<button type="button" class="mini-btn done-btn' + (mastered.has(i.id) ? " on-done" : "") +
-            '" data-act="done" aria-label="복습 완료" title="복습 완료">✓</button>' +
+            '" data-act="done" aria-label="' + doneLabel + '" title="' + doneLabel + '">✓</button>' +
         "</div>" +
       "</div>" +
       '<div class="card-body">' +
@@ -278,12 +336,33 @@
   }
 
   function render() {
+    var doneView = state.subject === DONE_VIEW;
     var list = applyFilters();
+    if (doneView) list = list.slice().sort(sortDoneView);
     var wrap = $("#cards");
     wrap.innerHTML = list.map(cardHTML).join("");
+    wrap.classList.toggle("is-doneview", doneView);
+    $("#resultView").textContent = doneView ? "복습 완료 · " : "";
     $("#resultCount").textContent = list.length;
-    $("#emptyState").hidden = list.length > 0;
-    wrap.hidden = list.length === 0;
+    $("#viewHint").hidden = !doneView;
+    $("#chipWeak").hidden = doneView;
+    var empty = list.length === 0;
+    $("#emptyState").hidden = !empty;
+    wrap.hidden = empty;
+    if (empty) {
+      var anyDone = doneView && ITEMS.some(function (i) { return mastered.has(i.id); });
+      if (doneView && !anyDone) {
+        $("#emptyEmoji").textContent = "✅";
+        $("#emptyMsg").innerHTML = "아직 복습 완료한 카드가 없어.<br>카드의 <b>✓</b>를 누르면 이 탭으로 모여.";
+        $("#emptyReset").textContent = "학습 카드 전체 보기";
+      } else {
+        $("#emptyEmoji").textContent = doneView ? "🔎" : "🗂️";
+        $("#emptyMsg").textContent = doneView
+          ? "이 조건에 맞는 복습 완료 카드가 없어."
+          : "조건에 맞는 카드가 없어.";
+        $("#emptyReset").textContent = "필터 초기화";
+      }
+    }
   }
 
   /* ---------- card interactions (delegated) ---------- */
@@ -300,16 +379,29 @@
         act.classList.toggle("on-star", starred.has(id));
         card.classList.toggle("is-star", starred.has(id));
         updateStats();
-      } else if (kind === "done") {
-        if (mastered.has(id)) mastered.delete(id); else mastered.add(id);
-        saveSet(LS.done, mastered);
-        act.classList.toggle("on-done", mastered.has(id));
-        card.classList.toggle("is-done", mastered.has(id));
-        updateStats();
-        if (state.filter === "weak" && mastered.has(id)) {
-          card.style.transition = "opacity .2s ease";
+        if (state.filter === "star" && !starred.has(id)) {
+          card.style.transition = "opacity .18s ease";
           card.style.opacity = "0";
-          setTimeout(render, 200);
+          window.setTimeout(render, 190);
+          toast("★ 별표를 풀었어 · 별표만 보기에서 빠졌어");
+        }
+      } else if (kind === "done") {
+        var wasDone = mastered.has(id);
+        if (wasDone) mastered.delete(id); else mastered.add(id);
+        saveSet(LS.done, mastered);
+        act.classList.toggle("on-done", !wasDone);
+        card.classList.toggle("is-done", !wasDone);
+        updateStats();
+        // 체크 ON → 과목 목록에서 빠져 '복습 완료'로 / 체크 OFF(복습 완료 탭) → 원래 과목 목록으로 복귀
+        if (!wasDone || state.subject === DONE_VIEW) {
+          var item = BY_ID[id];
+          card.style.transition = "opacity .18s ease, transform .18s ease";
+          card.style.opacity = "0";
+          card.style.transform = "translateY(-4px)";
+          window.setTimeout(render, 190);
+          toast(!wasDone
+            ? "✓ 복습 완료로 모았어 · 위의 '복습 완료' 탭에서 볼 수 있어"
+            : "↩︎ " + ((item && item.subject) || "원래") + " 목록으로 돌아갔어");
         }
       }
       return;
@@ -331,6 +423,7 @@
 
   $("#resetFilters").addEventListener("click", resetFilters);
   $("#emptyReset").addEventListener("click", resetFilters);
+  $("#statDoneBtn").addEventListener("click", function () { setSubject(DONE_VIEW); });
   function resetFilters() {
     state.subject = "전체";
     state.filter = "all";
@@ -339,18 +432,34 @@
     searchInput.value = "";
     $("#searchClear").hidden = true;
     $("#dateFilter").value = "all";
-    $$(".tab", $("#tabs")).forEach(function (t) {
-      t.classList.toggle("is-active", t.getAttribute("data-subject") === "전체");
-    });
-    $$(".chip", $("#chips")).forEach(function (c) {
-      c.classList.toggle("is-active", c.getAttribute("data-filter") === "all");
-    });
+    syncTabActive();
+    syncChipActive();
     try {
       localStorage.setItem(LS.subject, "전체");
       localStorage.setItem(LS.filter, "all");
       localStorage.setItem(LS.date, "all");
     } catch (e) {}
     render();
+    updateStats();
+  }
+
+  /* ---------- toast ---------- */
+  var toastTimer = null;
+  var toastHideTimer = null;
+  function toast(msg) {
+    var el = $("#toast");
+    if (!el) return;
+    el.textContent = msg;
+    el.hidden = false;
+    // 강제 리플로우로 opacity 전환을 다시 태운다
+    void el.offsetWidth;
+    el.classList.add("show");
+    clearTimeout(toastTimer);
+    clearTimeout(toastHideTimer);
+    toastTimer = window.setTimeout(function () {
+      el.classList.remove("show");
+      toastHideTimer = window.setTimeout(function () { el.hidden = true; }, 240);
+    }, 2600);
   }
 
   /* ---------- OX quiz ---------- */

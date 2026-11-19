@@ -37,7 +37,7 @@
   </div>
   <div class="stats" id="stats">
     <span class="stat"><b id="statTotal">0</b><i>전체 카드</i></span>
-    <span class="stat"><b id="statDone">0</b><i>복습 완료</i></span>
+    <button class="stat stat-btn" id="statDoneBtn" type="button" aria-label="복습 완료한 카드만 모아 보기" title="복습 완료한 카드만 모아 보기"><b id="statDone">0</b><i>복습 완료 ›</i></button>
     <span class="stat"><b id="statStar">0</b><i>별표</i></span>
     <span class="stat"><b id="statWeak">0</b><i>복습 대기</i></span>
   </div>
@@ -58,21 +58,24 @@
   </div>
   <div class="chips" id="chips">
     <button class="chip is-active" data-filter="all" type="button">전체</button>
-    <button class="chip" data-filter="weak" type="button">복습 대기</button>
+    <button class="chip" id="chipWeak" data-filter="weak" type="button">복습 대기</button>
     <button class="chip" data-filter="star" type="button">★ 별표만</button>
   </div>
-  <p class="result-line"><span id="resultCount">0</span>개 카드 <button class="link-btn" id="resetFilters" type="button">필터 초기화</button></p>
+  <p class="view-hint" id="viewHint" hidden>✅ <b>복습 완료</b>한 카드만 모아 놨어. 과목 배지를 보고 다시 볼 수 있고, 체크를 풀면 원래 과목 목록으로 돌아가.</p>
+  <p class="result-line"><span class="result-view" id="resultView"></span><span id="resultCount">0</span>개 카드 <button class="link-btn" id="resetFilters" type="button">필터 초기화</button></p>
 </section>
 
 <main id="cards" class="cards"></main>
 <div class="empty" id="emptyState" hidden>
-  <p class="empty-emoji">🗂️</p>
-  <p>조건에 맞는 카드가 없어.</p>
+  <p class="empty-emoji" id="emptyEmoji">🗂️</p>
+  <p id="emptyMsg">조건에 맞는 카드가 없어.</p>
   <button class="btn" id="emptyReset" type="button">필터 초기화</button>
 </div>
 
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
 <footer class="foot">
-  <p><b>복습 팁</b> · 카드를 눌러 접고 펼 수 있어. <b>복습 완료</b>를 누르면 진행률에 반영돼.</p>
+  <p><b>복습 팁</b> · 카드를 눌러 접고 펼 수 있어. <b>✓ 복습 완료</b>를 누르면 목록에서 빠져 <b>복습 완료</b> 탭으로 모이고, 진행률에 반영돼.</p>
   <p class="foot-dim" id="footUpdated"></p>
 </footer>
 
